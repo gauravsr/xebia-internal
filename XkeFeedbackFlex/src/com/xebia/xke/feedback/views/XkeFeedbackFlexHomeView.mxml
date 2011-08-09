@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" title="HomeView">
+	
+	<fx:Script>
+		<![CDATA[
+			
+			protected function adminBtn_clickHandler(event:MouseEvent):void
+			{
+				navigator.pushView(LoginView);
+				
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" />
+	</s:layout>
+	<s:Button id="adminBtn" label="Admin" click="adminBtn_clickHandler(event)"/>
+	<s:Button label="Feedback"/>
+	
+	
+</s:View>

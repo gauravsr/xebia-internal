@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		title="AdminView">
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center" verticalAlign="middle"/>
+	</s:layout>
+	
+	<fx:Script>
+		<![CDATA[
+			protected function addSessionBtn_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				navigator.pushView(AddSessionView);
+				
+			}
+			
+			protected function viewSessionBtn_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				
+			}
+			
+			protected function homeBtn_clickHandler(event:MouseEvent):void
+			{
+				navigator.popToFirstView();
+			}
+			
+		]]>
+	</fx:Script>
+	<s:navigationContent>
+		<s:Button id="HomeBtn" label="Home" click="homeBtn_clickHandler(event)"/>
+	</s:navigationContent>
+	
+	
+	<s:Button id="addSessionBtn" label="Add Session" click="addSessionBtn_clickHandler(event)"/>
+	<s:Button id="viewSessionBtn" label="View All Sessions"
+			  click="viewSessionBtn_clickHandler(event)"/>
+	
+</s:View>

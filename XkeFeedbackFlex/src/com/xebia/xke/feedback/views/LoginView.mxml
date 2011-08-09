@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		title="AdminView">
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center" verticalAlign="middle"/>
+	</s:layout>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.rpc.events.ResultEvent;
+			protected function loginBtn_clickHandler(event:MouseEvent):void
+			{
+				//call login service and return a boolean
+				//TODO: to be removed
+				loginResultHandler(null);
+			}
+			
+			private function loginResultHandler(event:ResultEvent):void {
+				var isLoginSuccessful:Boolean = true;
+				if(isLoginSuccessful) {
+					navigator.pushView(AdminView);
+				}
+				else {
+					errorMsg.text = "Invalid credentials";
+				}
+			}
+			
+			protected function homeBtn_clickHandler(event:MouseEvent):void
+			{
+				navigator.popToFirstView();
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<s:navigationContent>
+		<s:Button id="HomeBtn" label="Home" click="homeBtn_clickHandler(event)"/>
+	</s:navigationContent>
+	
+	<s:Label id="errorMsg"/>
+	
+	<s:HGroup>
+		<s:Label text="Login Id"/>
+		<s:TextInput id="loginIdTxt"/>
+	</s:HGroup>
+	<s:HGroup>
+		<s:Label text="Password"/>
+		<s:TextInput id="passwordTxt" displayAsPassword="true"/>
+	</s:HGroup>	
+	<s:Button id="loginBtn" label="Login" click="loginBtn_clickHandler(event)"/>
+</s:View>
