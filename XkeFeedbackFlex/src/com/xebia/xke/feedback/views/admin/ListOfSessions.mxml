@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		title="List of Sessions">
+
+	<fx:Script>
+		<![CDATA[
+			import com.xebia.xke.feedback.views.UserMode;
+			import com.xebia.xke.feedback.views.feedback.Feedback;
+			
+			import mx.collections.ArrayList;
+			
+			[Bindable]
+			private var listOfAllSessions:ArrayList = new ArrayList(new Array("Session 1", "Session 2", "Session 3"));
+			
+			private function sessionClickHandler(event:MouseEvent):void {
+				switch(data) {
+					case UserMode.GENERAL_USER: {
+						navigator.pushView(Feedback, listOfSessions.selectedItem);
+						break;
+					}
+					case UserMode.ADMIN: {
+						navigator.pushView(ManageSession);
+						break;
+					}
+					default:
+						break;
+				}
+			}
+			
+			private function homeButtonClickHandler(event:MouseEvent):void {
+				navigator.popToFirstView();
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:navigationContent>
+		<s:Button label="Home" 
+				  click="homeButtonClickHandler(event)"/>
+	</s:navigationContent>
+	
+	<s:List id="listOfSessions" 
+			dataProvider="{listOfAllSessions}"
+			width="100%"
+			height="100%"
+			click="sessionClickHandler(event)"/>
+	
+</s:View>

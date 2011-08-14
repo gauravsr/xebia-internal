@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:parameters="com.xebia.xke.feedback.views.feedback.parameters.*"
+		title="Feedback" xmlns:feedback="com.xebia.xke.feedback.views.feedback.*">
+	
+	<fx:Script>
+		<![CDATA[
+			
+			private function homeButtonClickHandler(event:MouseEvent):void {
+				navigator.popToFirstView();
+			}
+			
+			private function resetHandler(event:MouseEvent):void {
+				empIdTxt.text = "";
+				content.reset();
+				presentation.reset();
+				sessionUsefulness.reset();
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:navigationContent>
+		<s:Button label="Home" 
+				  click="homeButtonClickHandler(event)"/>
+	</s:navigationContent>
+	
+	<s:VGroup left="10" 
+			  right="10" 
+			  top="10" 
+			  bottom="10">
+		
+		<s:HGroup width="100%"
+				  height="10%"
+				  horizontalAlign="center"
+				  verticalAlign="middle">
+			<s:Label text="Feedback for {data}"/>
+		</s:HGroup>
+		
+		<s:SkinnableContainer width="100%"
+							  height="5%">
+			<s:Label text="Employee ID: "
+					 top="14"/>
+			<s:TextInput id="empIdTxt"
+						 left="150"/>
+		</s:SkinnableContainer>
+	
+		<parameters:Content id="content"/>
+		<parameters:Presentation id="presentation"/>
+		<feedback:SessionUsefulness id="sessionUsefulness"/>
+		
+		<s:SkinnableContainer width="100%"
+							  height="5%">
+			<s:layout>
+				<s:ButtonBarHorizontalLayout gap="20"/>
+			</s:layout>
+
+			<s:Button label="SUBMIT"/>
+			<s:Button label="RESET"
+					  click="resetHandler(event)"/>
+		</s:SkinnableContainer>
+		
+	</s:VGroup>
+	
+</s:View>

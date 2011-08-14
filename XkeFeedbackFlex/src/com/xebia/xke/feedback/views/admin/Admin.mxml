@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		title="Admin">
+	
+	<s:layout>
+		<s:HorizontalLayout horizontalAlign="center" 
+							verticalAlign="middle" />
+	</s:layout>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.xebia.xke.feedback.views.UserMode;
+			protected function addSessionClickHandler(event:MouseEvent):void {
+				navigator.pushView(UpdateSession, UserMode.CREATE);
+			}
+			
+			protected function viewSessionClickHandler(event:MouseEvent):void {
+				navigator.pushView(ListOfSessions, UserMode.ADMIN);
+			}
+			
+			protected function homeClickHandler(event:MouseEvent):void {
+				navigator.popToFirstView();
+			}
+			
+		]]>
+	</fx:Script>
+	<s:navigationContent>
+		<s:Button label="Home" 
+				  click="homeClickHandler(event)"/>
+	</s:navigationContent>
+	
+	
+	<s:Button label="Add Session" 
+			  click="addSessionClickHandler(event)"/>
+	<s:Button id="viewSessionBtn" label="View All Sessions"
+			  click="viewSessionClickHandler(event)"/>
+	
+</s:View>

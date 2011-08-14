@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		title="Home">
+	
+	<fx:Script>
+		<![CDATA[
+			import com.xebia.xke.feedback.views.admin.ListOfSessions;
+			import com.xebia.xke.feedback.views.admin.Login;
+			import com.xebia.xke.feedback.views.UserMode;
+			
+			private function adminButtonClickHandler(event:MouseEvent):void {
+				navigator.pushView(Login);
+			}
+			
+			private function feedbackButtonClickHandler(event:MouseEvent):void {
+				navigator.pushView(ListOfSessions, UserMode.GENERAL_USER);
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:layout>
+		<s:HorizontalLayout horizontalAlign="center" 
+							verticalAlign="middle" />
+	</s:layout>
+	
+	<s:Button label="Admin" 
+			  click="adminButtonClickHandler(event)"/>
+	
+	<s:Button label="Feedback"
+			  click="feedbackButtonClickHandler(event)"/>
+
+</s:View>

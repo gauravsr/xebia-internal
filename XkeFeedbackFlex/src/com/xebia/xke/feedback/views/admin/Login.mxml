@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		title="Login">
+	
+	<fx:Script>
+		<![CDATA[
+			
+			import mx.rpc.events.ResultEvent;
+			
+			private function loginClickHandler(event:MouseEvent):void {
+				//call login service and return a boolean
+				//TODO: to be removed
+				loginResultHandler(null);
+			}
+			
+			private function loginResultHandler(event:ResultEvent):void {
+				var isLoginSuccessful:Boolean = true;
+				if(isLoginSuccessful) {
+					navigator.pushView(Admin);
+				}
+				else {
+					errorMsg.text = "Invalid credentials";
+				}
+			}
+			
+			private function homeClickHandler(event:MouseEvent):void {
+				navigator.popToFirstView();
+			}
+			
+			private function resetClickHandler(event:MouseEvent):void {
+				empIdTxt.text = passwordTxt.text = "";
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:navigationContent>
+		<s:Button label="Home" 
+				  click="homeClickHandler(event)"/>
+	</s:navigationContent>
+	
+	
+	<s:VGroup left="10" 
+			  right="10" 
+			  top="10" 
+			  bottom="10"
+			  horizontalAlign="center"
+			  verticalAlign="middle">
+		
+		<s:Label id="errorMsg"/>
+		
+		<s:SkinnableContainer width="100%">
+			<s:Label text="ID: "
+					 left="20"
+					 top="10"/>
+			<s:TextInput id="empIdTxt"
+						 left="150"/>
+		</s:SkinnableContainer>
+		
+		<s:SkinnableContainer width="100%">
+			<s:Label text="Password: "
+					 left="20"
+					 top="10"/>
+			<s:TextInput id="passwordTxt"
+						 displayAsPassword="true"
+						 left="150"/>
+		</s:SkinnableContainer>
+		
+		<s:SkinnableContainer width="100%"
+							  height="5%">
+			<s:layout>
+				<s:ButtonBarHorizontalLayout gap="20"/>
+			</s:layout>
+			<s:Button label="Login" 
+					  click="loginClickHandler(event)"/>
+			<s:Button label="Reset" 
+					  click="resetClickHandler(event)"/>
+		</s:SkinnableContainer>
+	</s:VGroup>
+
+</s:View>

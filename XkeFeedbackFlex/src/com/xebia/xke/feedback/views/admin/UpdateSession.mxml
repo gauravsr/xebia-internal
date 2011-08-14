@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		title="Add/Edit Session">
+	
+	<fx:Script>
+		<![CDATA[
+			import com.xebia.xke.feedback.component.AlertView;
+			import com.xebia.xke.feedback.views.UserMode;
+			
+			import mx.rpc.events.ResultEvent;
+			protected function saveClickHandler(event:MouseEvent):void
+			{
+				//call login service and return a boolean
+				saveSessionResultHandler(null);
+			}
+			
+			private function saveSessionResultHandler(event:ResultEvent):void
+			{
+				// TODO Auto Generated method stub
+				var isSessionSavedSuccessfully:Boolean = true;
+				if(isSessionSavedSuccessfully) {
+					var alert:AlertView = new AlertView();
+					alert.alertTitle="Message";
+					alert.alertMessage="Successfully Saved";
+					alert.open(this,false);
+					alert.x = this.width/2 - alert.width/2;
+					alert.y = this.height/2-alert.height/2;
+					alert.addEventListener("okClicked",okHandler);
+				}
+			}
+			
+			private function okHandler(event:Event):void {
+				event.currentTarget.close();
+				
+				switch(data) {
+					case UserMode.CREATE: { 
+						navigator.popView();
+						break;
+					}
+					case UserMode.EDIT: {
+						navigator.pushView(ListOfSessions, UserMode.ADMIN);
+						break;
+					}
+					default:
+						break;
+				}
+			}
+			
+			private function resetClickHandler(event:MouseEvent):void {
+				// to be refactored
+				xkeTopicTxt.text = presenterTxt.text = dateTxt.text = startTimeTxt.text = endTimeTxt.text = "";
+				parallelSessionCb.selected = flexCb.selected = javaCb.selected = false;
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:VGroup left="10" 
+			  right="10" 
+			  top="10" 
+			  bottom="10">
+
+		<s:SkinnableContainer width="100%"
+							  height="5%">
+			<s:Label text="XKE Topic: "
+					 top="14"/>
+			<s:TextInput id="xkeTopicTxt"
+						 left="150"/>
+		</s:SkinnableContainer>
+		
+		<s:SkinnableContainer width="100%"
+							  height="5%">
+			<s:Label text="Presenter: "
+					 top="14"/>
+			<s:TextInput id="presenterTxt"
+						 left="150"/>
+		</s:SkinnableContainer>
+		
+		<s:SkinnableContainer width="100%"
+							  height="5%">
+			<s:Label text="Date (mm/dd/yyyy): "
+					 top="14"/>
+			<s:TextInput id="dateTxt"
+						 left="150"/>
+		</s:SkinnableContainer>
+		
+		<s:SkinnableContainer width="100%"
+							  height="5%">
+			<s:Label text="Start Time (hh:mm): "
+					 top="14"/>
+			<s:TextInput id="startTimeTxt"
+						 left="150"/>
+		</s:SkinnableContainer>
+		
+		<s:SkinnableContainer width="100%"
+							  height="5%">
+			<s:Label text="End Time (hh:mm): "
+					 top="14"/>
+			<s:TextInput id="endTimeTxt"
+						 left="150"/>
+		</s:SkinnableContainer>
+		
+		<s:SkinnableContainer width="100%"
+							  height="5%">
+			<s:Label text="Parallel Session: "
+					 top="14"/>
+			<s:CheckBox id="parallelSessionCb"
+						 left="150"/>
+		</s:SkinnableContainer>
+		
+		<s:SkinnableContainer width="100%"
+							  height="5%">
+			<s:Label text="Category: "
+					 top="14"/>
+			<s:HGroup left="150">
+				<s:CheckBox id="flexCb" 
+					label="Flex"/>
+				<s:CheckBox id="javaCb" 
+					label="Java"/>
+			</s:HGroup>
+		</s:SkinnableContainer>
+		
+		<s:SkinnableContainer width="100%"
+							  height="5%">
+			<s:layout>
+				<s:ButtonBarHorizontalLayout gap="20"/>
+			</s:layout>
+			<s:Button id="saveBtn"
+					  label="Save"
+					  click="saveClickHandler(event)"/>
+			<s:Button id="resetBtn"
+					  label="Reset"
+					  click="resetClickHandler(event)"/>
+		</s:SkinnableContainer>
+		
+	</s:VGroup>	
+			
+</s:View>
