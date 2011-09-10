@@ -53,8 +53,17 @@
 				parallelSessionCb.selected = flexCb.selected = javaCb.selected = false;
 			}
 			
+			private function homeClickHandler(event:MouseEvent):void {
+				navigator.popToFirstView();
+			}
+			
 		]]>
 	</fx:Script>
+	
+	<s:navigationContent>
+		<s:Button label="Home" 
+				  click="homeClickHandler(event)"/>
+	</s:navigationContent>
 	
 	<s:VGroup left="10" 
 			  right="10" 
