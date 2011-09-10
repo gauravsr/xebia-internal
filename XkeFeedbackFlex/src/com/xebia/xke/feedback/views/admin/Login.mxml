@@ -5,13 +5,15 @@
 	
 	<fx:Script>
 		<![CDATA[
-			
+			import mx.rpc.events.FaultEvent;
 			import mx.rpc.events.ResultEvent;
 			
 			private function loginClickHandler(event:MouseEvent):void {
 				//call login service and return a boolean
 				//TODO: to be removed
-				loginResultHandler(null);
+				
+				service.getData();
+				//loginResultHandler(null);
 			}
 			
 			private function loginResultHandler(event:ResultEvent):void {
@@ -32,50 +34,48 @@
 				empIdTxt.text = passwordTxt.text = "";
 			}
 			
+			protected function service_faultHandler(event:FaultEvent):void
+			{
+				// TODO Auto-generated method stub
+				
+			}
+			
 		]]>
 	</fx:Script>
 	
+	<fx:Declarations>
+		<s:RemoteObject id="service"
+						destination="xkefeedbackservice"
+						result="loginResultHandler(event)"
+						fault="service_faultHandler(event)"/>
+	</fx:Declarations>
+	
 	<s:navigationContent>
-		<s:Button label="Home" 
-				  click="homeClickHandler(event)"/>
+		<s:Button label="Home" click="homeClickHandler(event)"/>
 	</s:navigationContent>
 	
 	
-	<s:VGroup left="10" 
-			  right="10" 
-			  top="10" 
-			  bottom="10"
-			  horizontalAlign="center"
+	<s:VGroup left="10" right="10" top="10" bottom="10" horizontalAlign="center"
 			  verticalAlign="middle">
 		
 		<s:Label id="errorMsg"/>
 		
 		<s:SkinnableContainer width="100%">
-			<s:Label text="ID: "
-					 left="20"
-					 top="10"/>
-			<s:TextInput id="empIdTxt"
-						 left="150"/>
+			<s:Label left="20" top="10" text="ID: "/>
+			<s:TextInput id="empIdTxt" left="150"/>
 		</s:SkinnableContainer>
 		
 		<s:SkinnableContainer width="100%">
-			<s:Label text="Password: "
-					 left="20"
-					 top="10"/>
-			<s:TextInput id="passwordTxt"
-						 displayAsPassword="true"
-						 left="150"/>
+			<s:Label left="20" top="10" text="Password: "/>
+			<s:TextInput id="passwordTxt" left="150" displayAsPassword="true"/>
 		</s:SkinnableContainer>
 		
-		<s:SkinnableContainer width="100%"
-							  height="5%">
+		<s:SkinnableContainer width="100%" height="5%">
 			<s:layout>
 				<s:ButtonBarHorizontalLayout gap="20"/>
 			</s:layout>
-			<s:Button label="Login" 
-					  click="loginClickHandler(event)"/>
-			<s:Button label="Reset" 
-					  click="resetClickHandler(event)"/>
+			<s:Button label="Login" click="loginClickHandler(event)"/>
+			<s:Button label="Reset" click="resetClickHandler(event)"/>
 		</s:SkinnableContainer>
 	</s:VGroup>
 
