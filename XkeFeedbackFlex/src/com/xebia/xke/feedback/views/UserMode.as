@@ -10,5 +10,8 @@ package com.xebia.xke.feedback.views
 		public function UserMode()
 		{
 		}
+		public function UserStatus():void 
+		{
+		}
 	}
 }
