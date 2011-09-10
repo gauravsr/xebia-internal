@@ -3,6 +3,6 @@
 							xmlns:s="library://ns.adobe.com/flex/spark" 
 							firstView="cim.xebia.xke.feedback.XkeFeedbackFlexHomeView">
 	<fx:Declarations>
-		<!-- Put non-visual elements (e.g., services, value objects) here -->
+		<!-- Plac non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
 </s:ViewNavigatorApplication> 
